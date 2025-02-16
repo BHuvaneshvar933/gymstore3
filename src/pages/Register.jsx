@@ -1,10 +1,9 @@
-// Register.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import home from "../assets/home.jpg";
 
 const Register = () => {
-  // New: Added email state along with username and password.
+  // Added email state along with username and password.
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

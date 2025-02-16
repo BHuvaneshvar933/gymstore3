@@ -1,4 +1,3 @@
-// Orders.jsx
 import React, { useState, useEffect } from 'react';
 import { useOrder } from '../context/OrderContext';
 import { useAuth } from '../context/AuthContext';
@@ -38,8 +37,10 @@ const Orders = () => {
         <div className="grid gap-6">
           {sortedOrders.map((order) => (
             <div key={order._id || order.id} className="border border-gray-200 rounded-lg shadow-md p-4">
-              <div className="flex justify-between gap-4">
-                <div className="flex space-x-8">
+              {/* Added responsive classes: stack vertically on small screens, horizontal on md+ */}
+              <div className="flex flex-col md:flex-row justify-between gap-4">
+                {/* Left-side: wrap images and order info in a responsive flex container */}
+                <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-8">
                   <div className="flex items-center space-x-4">
                     <div className="flex space-x-2">
                       {order.items.slice(0, 3).map((item, index) => (

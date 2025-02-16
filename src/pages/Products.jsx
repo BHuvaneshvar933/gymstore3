@@ -1,4 +1,3 @@
-// Products.jsx
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useCart } from '../context/CartContext';

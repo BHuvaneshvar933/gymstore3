@@ -1,4 +1,3 @@
-// routes/products.js
 const express = require('express');
 const router = express.Router();
 const Product = require('../models/Product');
@@ -17,7 +16,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// OPTIONAL: POST route to add new products (useful for seeding or admin panel)
 router.post('/', async (req, res) => {
   const product = new Product(req.body);
   try {

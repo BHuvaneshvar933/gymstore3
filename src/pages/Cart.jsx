@@ -1,4 +1,3 @@
-// Cart.jsx
 import React, { useEffect } from 'react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';

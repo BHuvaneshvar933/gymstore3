@@ -1,4 +1,3 @@
-// OrderContext.jsx
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
@@ -32,7 +31,7 @@ export const OrderProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      // Optionally, update local orders state with the newly created order
+      // update local orders state with the newly created order
       setOrders((prevOrders) => [response.data, ...prevOrders]);
       return response.data;
     } catch (error) {
