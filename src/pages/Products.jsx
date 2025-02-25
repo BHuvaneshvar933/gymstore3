@@ -86,7 +86,7 @@ const Products = () => {
                 </div>
                 <div className="p-4">
                   <h3 className="text-lg font-bold text-white">{product.name}</h3>
-                  <p className="text-sm text-neutral-400">Price: ${product.price}</p>
+                  <p className="text-sm text-neutral-400">Price: ₹{product.price}</p>
                   <p className="text-sm text-neutral-400">{product.description}</p>
                   <button
                     onClick={() => handleAddToCart(product)}

@@ -49,7 +49,7 @@ const products = [
     name: 'Yoga Mat', 
     price: 100, 
     category: 'equipment', // or change to appropriate category if needed
-    image: 'http://localhost:5000/images/b.png', // local path
+    image: 'http://localhost:5000/images/mat.jpg', // local path
     description: 'A cushioned, non-slip surface for yoga, stretching, or floor exercises. Essential for any fitness routine.'
   },
   { 
