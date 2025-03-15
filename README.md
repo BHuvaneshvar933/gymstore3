@@ -49,15 +49,6 @@ We welcome contributions! If you'd like to contribute:
 4. Push the changes: `git push origin feature-branch-name`.
 5. Open a pull request.
 
-## 📝 License
-This project is licensed under the MIT License.
-
-## 📬 Contact
-For any queries or suggestions, feel free to reach out:
-- 📧 Email: bhuvaneshvarreddy933@gmail.com
-- 🐙 GitHub: [@BHuvaneshvar933](https://github.com/BHuvaneshvar933)
-
----
 
 🏋️‍♂️ Stay fit with **GymStore3**! 💪
 
