@@ -10,7 +10,7 @@ export const OrderProvider = ({ children }) => {
   const fetchOrders = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/orders', {
+      const response = await axios.get('https://gymstore3-2.onrender.com/api/orders', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -25,7 +25,7 @@ export const OrderProvider = ({ children }) => {
   const placeOrder = async (order) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post('http://localhost:5000/api/orders', order, {
+      const response = await axios.post('https://gymstore3-2.onrender.com/api/orders', order, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
