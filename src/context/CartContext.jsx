@@ -13,7 +13,7 @@ export const CartProvider = ({ children }) => {
   const fetchCart = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/cart', {
+      const response = await axios.get('https://gymstore3-2.onrender.com/api/cart', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -42,7 +42,7 @@ export const CartProvider = ({ children }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://localhost:5000/api/cart',
+        'https://gymstore3-2.onrender.com/api/cart',
         { items },
         { headers: { Authorization: `Bearer ${token}` } }
       );
