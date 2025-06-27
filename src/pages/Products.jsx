@@ -20,7 +20,7 @@ const Products = () => {
   const fetchProducts = async () => {
     try {
       // Adjust the query string to match your seed/model (e.g., "supplement" vs "supplements")
-      const res = await axios.get(`/api/products?category=${selectedCategory}`);
+      const res = await axios.get(`https://gymstore3-2.onrender.com/api/products?category=${selectedCategory}`);
       setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products:", error);
