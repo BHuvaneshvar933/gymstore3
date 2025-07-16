@@ -27,7 +27,12 @@ app.get('/images/:imageName', (req, res) => {
 
 // Middleware
 app.use(express.json()); // Parse JSON bodies
-app.use(cors());         // Enable CORS (adjust settings as needed)
+app.use(cors({
+  origin: ['https://gymstore3.vercel.app', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+        // Enable CORS (adjust settings as needed)
 
 // Connect to MongoDB using the connection string from .env
 mongoose.connect(process.env.MONGO_URI)
