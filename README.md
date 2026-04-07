@@ -4,12 +4,12 @@
 GymStore3 is an e-commerce platform designed for fitness enthusiasts, offering a seamless shopping experience for gym equipment, apparel, and supplements. The platform allows users to browse, purchase, and manage their fitness-related products efficiently.
 
 ## Features
-- 🛍️ Browse and search for gym-related products.
-- 🏷️ View product details including price, description, and images.
-- 🛒 Add items to the cart and proceed to checkout.
-- 🔑 User authentication for personalized shopping.
-- 📦 Order tracking and history management.
-- 📊 Admin panel to manage products and orders.
+- Browse and search for gym-related products.
+- View product details including price, description, and images.
+- Add items to the cart and proceed to checkout.
+- User authentication for personalized shopping.
+- Order tracking and history management.
+- Admin panel to manage products and orders.
 
 ## Technologies Used
 - **Frontend:** HTML, CSS, JavaScript, React.js, Tailwind CSS
