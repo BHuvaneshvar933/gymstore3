@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import productBg from "../assets/product.avif";
@@ -22,7 +22,7 @@ const Products = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/products?category=${selectedCategory}`, { withCredentials: true });
+      const res = await api.get(`/products?category=${selectedCategory}`);
       setProducts(res.data);
     } catch (error) {
       console.error("Error fetching products:", error);

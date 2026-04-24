@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import home from "../assets/home.jpg";
+import api from '../utils/api';
 import { CreditCard, MapPin, ShoppingBag, CheckCircle, Wallet, Smartphone, ArrowLeft } from 'lucide-react';
 
 const Register = () => {
@@ -16,18 +17,10 @@ const Register = () => {
     setError(''); 
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/register', {
-        method: 'POST',
-        headers: { 
-          "Content-Type": "application/json" 
-        },
-        body: JSON.stringify({ username, email, password }),
-        withCredentials: true
-      });
+      const response = await api.post('/auth/register', { username, email, password });
+      const data = response.data;
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (response.status === 201 || response.status === 200) {
         setShowSuccessMessage(true);
         setTimeout(() =>{
           setShowSuccessMessage(false);

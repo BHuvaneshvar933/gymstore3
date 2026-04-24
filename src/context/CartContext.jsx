@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 import { useAuth } from './AuthContext';
 
 const CartContext = createContext();
@@ -11,13 +11,7 @@ export const CartProvider = ({ children }) => {
 
   const fetchCart = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:5000/api/cart', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true
-      });
+      const response = await api.get('/cart');
       setCartItems(response.data.items);
     } catch (error) {
       console.error('Error fetching cart:', error);
@@ -38,12 +32,7 @@ export const CartProvider = ({ children }) => {
 
   const updateBackendCart = async (items) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.post(
-        'http://localhost:5000/api/cart',
-        { items },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const response = await api.post('/cart', { items });
       setCartItems(response.data.items);
     } catch (error) {
       console.error('Error updating cart:', error);

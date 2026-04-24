@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import api from '../utils/api';
 import home from "../assets/home.jpg";
 import { CheckCircle } from 'lucide-react';
 
@@ -15,14 +16,8 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:5000/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-        withCredentials: true
-      });
-
-      const data = await response.json();
+      const response = await api.post("/auth/login", { email, password });
+      const data = response.data;
 
       if (data.token) {
         login(data.token);
