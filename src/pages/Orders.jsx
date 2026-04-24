@@ -9,7 +9,7 @@ const Orders = () => {
   const [expandedOrder, setExpandedOrder] = useState(null);
   const [showAllProducts, setShowAllProducts] = useState({});
 
-  const sortedOrders = orders.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+  const sortedOrders = Array.isArray(orders) ? orders.slice().sort((a, b) => new Date(b.date) - new Date(a.date)) : [];
 
   useEffect(() => {
     if (user) {

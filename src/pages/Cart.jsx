@@ -9,8 +9,8 @@ const Cart = () => {
   const { user, loading } = useAuth();
   const navigate = useNavigate();
 
-  const totalCost = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-  const itemCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+  const totalCost = Array.isArray(cartItems) ? cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) : 0;
+  const itemCount = Array.isArray(cartItems) ? cartItems.reduce((acc, item) => acc + item.quantity, 0) : 0;
 
   const handleCheckout = () => {
     if (cartItems.length === 0) {
@@ -38,7 +38,7 @@ const Cart = () => {
           </p>
         </div>
 
-        {cartItems.length === 0 ? (
+        {!cartItems || cartItems.length === 0 ? (
           <div className="bg-neutral-900/60 backdrop-blur-sm border border-neutral-800 rounded-2xl p-12 text-center">
             <div className="max-w-md mx-auto">
               <div className="w-24 h-24 bg-neutral-800 rounded-full flex items-center justify-center mx-auto mb-6">
