@@ -2,103 +2,128 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../utils/api';
-import home from "../assets/home.jpg";
-import { CheckCircle } from 'lucide-react';
+import { LogIn, Mail, Lock, AlertCircle, ArrowRight, UserPlus } from 'lucide-react';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [showSuccessMessage, setShowSuccessMessage]= useState(false);
   const navigate = useNavigate();
   const { login } = useAuth(); 
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError("");
     try {
       const response = await api.post("/auth/login", { email, password });
       const data = response.data;
 
       if (data.token) {
         login(data.token);
-        setShowSuccessMessage(true);
-        setTimeout(() =>{
-          setShowSuccessMessage(false);
-          navigate("/"); 
-        }, 2000);
+        navigate("/"); 
       } else {
         setError(data.message || "Login failed!");
-        alert("Login failed!");
       }
     } catch (err) {
-      setError("An error occurred during login.");
+      setError(err.response?.data?.message || "An error occurred during login.");
       console.error(err);
     }
   };
 
   return (
-    <div
-      className="relative bg-cover bg-center min-h-screen flex items-center justify-center"
-      style={{ backgroundImage: `url(${home})` }}
-    >
-      <div className="absolute inset-0 bg-gradient-to-r from-black to-neutral-950 opacity-80"></div>
-      <div className="relative bottom-14 text-center bg-neutral-800/80 p-10 rounded-2xl shadow-lg w-full max-w-md">
-        <form onSubmit={handleLogin} className="space-y-6">
-          <h1 className="text-4xl font-bold text-white">Login</h1>
-          <div>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              placeholder="Email"
-              className="border border-neutral-500 w-full px-4 py-3 rounded-lg bg-neutral-900 text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              placeholder="Password"
-              className="border border-neutral-500 w-full px-4 py-3 rounded-lg bg-neutral-900 text-white focus:outline-none focus:ring-2 focus:ring-orange-500"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full py-3 rounded-md bg-gradient-to-r from-orange-500 to-orange-800 text-white font-semibold hover:from-orange-400 hover:to-red-600 transition"
-          >
-            Login
-          </button>
-        </form>
-        <div className="flex items-center mt-6">
-          <div className="flex-1 h-px bg-neutral-600"></div>
-          <p className="text-neutral-400 mx-4 text-sm">New to GymStore?</p>
-          <div className="flex-1 h-px bg-neutral-600"></div>
-        </div>
-        <Link
-          to="/register"
-          className="block mt-4 border border-neutral-400 text-neutral-400 py-2 px-6 rounded-md hover:bg-neutral-700 hover:text-white transition"
-        >
-          Register
-        </Link>
-        {error && <p className="mt-4 text-red-500 text-sm">{error}</p>}
+    <div className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+      {/* Background with parallax-like effect */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center z-0 scale-105"
+        style={{ backgroundImage: `url(https://images.unsplash.com/photo-1540497077202-7c8a3999166f?w=1920)` }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-neutral-900/95 to-black opacity-90"></div>
       </div>
-      {showSuccessMessage && (
-                    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
-                      <div className="bg-neutral-900 border border-green-500 rounded-2xl p-8 max-w-md mx-4 text-center animate-scale-in">
-                        <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                          <CheckCircle className="w-12 h-12 text-white" />
-                        </div>
-                        <h2 className="text-3xl font-bold text-white mb-3">Registered Successfully!</h2>
-                        <p className="text-neutral-400 mb-6">
-                          Redirecting to login page...
-                        </p>
-                        <div className="w-16 h-1 bg-gradient-to-r from-orange-500 to-orange-600 mx-auto rounded-full"></div>
-                      </div>
-                    </div>
-                  )}
+
+      {/* Decorative Orbs */}
+      <div className="absolute top-1/4 -left-20 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-red-600/10 rounded-full blur-3xl animate-pulse"></div>
+
+      <div className="relative z-10 w-full max-w-md">
+        <div className="backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl overflow-hidden group">
+          {/* Top accent line */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-orange-400 to-red-600"></div>
+
+          <div className="text-center mb-8">
+            <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-orange-400/20 to-red-600/20 border border-orange-400/30 mb-4 group-hover:scale-110 transition-transform duration-300">
+              <LogIn className="w-8 h-8 text-orange-400" />
+            </div>
+            <h1 className="text-4xl font-black text-white mb-2 tracking-tight">
+              Welcome <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Back</span>
+            </h1>
+            <p className="text-neutral-400 font-medium">Continue your fitness journey</p>
+          </div>
+
+          <form onSubmit={handleLogin} className="space-y-5">
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-neutral-300 ml-1">Email Address</label>
+              <div className="relative group">
+                <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-orange-400 transition-colors" />
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  placeholder="name@example.com"
+                  className="w-full pl-12 pr-4 py-3.5 bg-neutral-900/50 border border-neutral-700/50 rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 transition-all backdrop-blur-sm"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-semibold text-neutral-300 ml-1">Password</label>
+              <div className="relative group">
+                <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-500 group-focus-within:text-orange-400 transition-colors" />
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="••••••••"
+                  className="w-full pl-12 pr-4 py-3.5 bg-neutral-900/50 border border-neutral-700/50 rounded-xl text-white placeholder-neutral-600 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-orange-500/50 transition-all backdrop-blur-sm"
+                />
+              </div>
+            </div>
+
+            {error && (
+              <div className="flex items-center gap-2 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm animate-shake">
+                <AlertCircle className="w-5 h-5 flex-shrink-0" />
+                <p>{error}</p>
+              </div>
+            )}
+
+            <button
+              type="submit"
+              className="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 to-red-700 text-white font-bold text-lg hover:shadow-lg hover:shadow-orange-500/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 flex items-center justify-center gap-2 group"
+            >
+              Sign In
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </form>
+
+          <div className="mt-8 flex flex-col items-center gap-4">
+            <div className="flex items-center gap-4 w-full">
+              <div className="flex-1 h-px bg-white/10"></div>
+              <p className="text-neutral-500 text-sm font-medium">New to GymStore?</p>
+              <div className="flex-1 h-px bg-white/10"></div>
+            </div>
+            
+            <Link
+              to="/register"
+              className="flex items-center gap-2 text-orange-400 hover:text-orange-300 font-bold transition-colors group"
+            >
+              <UserPlus className="w-5 h-5" />
+              Create an account
+              <span className="w-1.5 h-1.5 rounded-full bg-orange-400 animate-pulse"></span>
+            </Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
