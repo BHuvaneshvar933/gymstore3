@@ -1,54 +1,93 @@
-# GymStore3
+# 🏋️‍♂️ GymStore - Premium Fitness E-commerce
 
-## 🏋️ About GymStore3
-GymStore3 is an e-commerce platform designed for fitness enthusiasts, offering a seamless shopping experience for gym equipment, apparel, and supplements. The platform allows users to browse, purchase, and manage their fitness-related products efficiently.
+GymStore is a full-stack, premium e-commerce platform for gym equipment and supplements. It features a modern, high-performance design with glassmorphism aesthetics, a robust authentication system, and a centralized API management system.
 
-## 🚀 Features
-- 🛍️ Browse and search for gym-related products.
-- 🏷️ View product details including price, description, and images.
-- 🛒 Add items to the cart and proceed to checkout.
-- 🔑 User authentication for personalized shopping.
-- 📦 Order tracking and history management.
-- 📊 Admin panel to manage products and orders.
+![GymStore Preview](https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1200)
 
-## 🛠️ Technologies Used
-- **Frontend:** HTML, CSS, JavaScript, React.js, Tailwind CSS
-- **Backend:** Node.js, Express.js
-- **Database:** MongoDB
+## ✨ Features
 
-## 📦 Installation
-### 1️⃣ Clone the repository
+- **Premium UI/UX**: Dark-themed, glassmorphic design using Tailwind CSS and Lucide icons.
+- **Authentication**: Secure JWT-based login and registration with encrypted passwords (bcrypt).
+- **Product Management**: Categorized product listing (Equipment & Supplements) with real-time search.
+- **Shopping Cart**: Fully functional cart with quantity management and persistent state.
+- **Order Tracking**: Comprehensive order history dashboard for users.
+- **Profile Management**: User account customization with profile image uploads.
+- **Production Ready**: Optimized for deployment on Vercel (Frontend) and Render (Backend).
+
+## 🚀 Tech Stack
+
+### Frontend
+- **Framework**: React.js (Vite)
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **State Management**: React Context API (Auth, Cart, Orders)
+- **API Client**: Axios (with centralized interceptors)
+
+### Backend
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB (Mongoose)
+- **Security**: JWT, Bcrypt.js, CORS
+- **Deployment**: Render
+
+## 🛠️ Installation & Setup
+
+### Prerequisites
+- Node.js (v18+)
+- MongoDB Atlas account
+
+### 1. Clone the repository
 ```bash
- git clone https://github.com/BHuvaneshvar933/gymstore3.git
-```
-### 2️⃣ Navigate to the project directory
-```bash
+git clone https://github.com/your-username/gymstore3.git
 cd gymstore3
 ```
-### 3️⃣ Install dependencies
+
+### 2. Backend Setup
 ```bash
+cd gymstore-backend
 npm install
 ```
-### 4️⃣ Start the development server
+Create a `.env` file in `gymstore-backend/` and add:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+ALLOWED_ORIGINS=http://localhost:5173
+```
+Start the backend:
 ```bash
-npm start
+npm run dev
 ```
 
-## 💡 Usage
-1. Open your browser and navigate to `http://localhost:3000`.
-2. Browse through the available gym products.
-3. Add desired items to your cart and proceed to checkout.
-4. Log in to track orders and manage purchases.
-5. Admins can log in to add or update products.
+### 3. Frontend Setup
+```bash
+cd ..
+npm install
+```
+Create a `.env` file in the root directory and add:
+```env
+VITE_API_BASE_URL=http://localhost:5000/api
+```
+Start the frontend:
+```bash
+npm run dev
+```
 
-## 🛠️ Contribution Guidelines
-We welcome contributions! If you'd like to contribute:
-1. Fork the repository.
-2. Create a new branch: `git checkout -b feature-branch-name`.
-3. Make your changes and commit: `git commit -m "Added new feature"`.
-4. Push the changes: `git push origin feature-branch-name`.
-5. Open a pull request.
+## 🌐 Deployment
 
+### Frontend (Vercel)
+- Set the Build Command: `npm run build`
+- Set the Output Directory: `dist`
+- Add Environment Variable: `VITE_API_BASE_URL` pointing to your deployed backend.
 
-🏋️‍♂️ Stay fit with **GymStore3**! 💪
+### Backend (Render)
+- Set the Root Directory: `gymstore-backend`
+- Set the Build Command: `npm install`
+- Set the Start Command: `npm start`
+- Add Environment Variables: `MONGO_URI`, `JWT_SECRET`, `ALLOWED_ORIGINS`.
 
+## 📄 License
+This project is licensed under the ISC License.
+
+---
+Built with 💪 by Antigravity.
