@@ -56,9 +56,18 @@ mongoose.connect(process.env.MONGO_URI)
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
-// Catch-all route to serve index.html (for production builds served by backend)
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// Root route for API status
+app.get('/', (req, res) => {
+  res.json({
+    status: 'GymStore API is running',
+    version: '1.0.0',
+    mongodb: mongoose.connection.readyState === 1 ? 'Connected' : 'Disconnected'
+  });
+});
+
+// 404 Handler
+app.use((req, res) => {
+  res.status(404).json({ message: 'API Route not found' });
 });
 
 const PORT = process.env.PORT || 5000;
