@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useOrder } from '../context/OrderContext';
+import { getBaseUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 import { Package, ChevronDown, ChevronUp, MapPin, CreditCard, Calendar, ShoppingBag, Box } from 'lucide-react';
 
@@ -93,7 +94,7 @@ const Orders = () => {
                               style={{ zIndex: 3 - index }}
                             >
                               <img
-                                src={item.image}
+                                src={item.image.startsWith('http') ? item.image : `${getBaseUrl()}${item.image}`}
                                 alt={item.name}
                                 className="w-full h-full object-contain p-1"
                               />
@@ -199,7 +200,7 @@ const Orders = () => {
                             >
                               <div className="w-16 h-16 bg-neutral-900 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0">
                                 <img
-                                  src={item.image}
+                                  src={item.image.startsWith('http') ? item.image : `${getBaseUrl()}${item.image}`}
                                   alt={item.name}
                                   className="w-full h-full object-contain p-1"
                                 />

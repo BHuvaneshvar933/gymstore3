@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../utils/api';
+import api, { getBaseUrl } from '../utils/api';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import productBg from "../assets/product.avif";
@@ -138,7 +138,7 @@ const Products = () => {
                   <div className="relative w-full h-56 bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <img
-                      src={product.image}
+                      src={product.image.startsWith('http') ? product.image : `${getBaseUrl()}${product.image}`}
                       alt={product.name}
                       className="max-w-full max-h-full object-contain p-4 group-hover:scale-110 transition-transform duration-500"
                     />

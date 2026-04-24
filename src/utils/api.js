@@ -21,4 +21,12 @@ api.interceptors.request.use(
   }
 );
 
+export const getBaseUrl = () => {
+  if (API_BASE_URL.startsWith('http')) {
+    return API_BASE_URL.replace('/api', '');
+  }
+  // Fallback to your production backend URL if environment variable is missing
+  return 'https://gymstore3.onrender.com';
+};
+
 export default api;

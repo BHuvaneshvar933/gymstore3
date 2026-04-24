@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useCart } from '../context/CartContext';
+import { getBaseUrl } from '../utils/api';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { ShoppingCart, Trash2, Plus, Minus, ShoppingBag, ArrowRight, Package } from 'lucide-react';
@@ -71,7 +72,7 @@ const Cart = () => {
                     <div className="flex-shrink-0">
                       <div className="w-32 h-32 bg-neutral-800 rounded-xl overflow-hidden flex items-center justify-center">
                         <img
-                          src={item.image}
+                          src={item.image.startsWith('http') ? item.image : `${getBaseUrl()}${item.image}`}
                           alt={item.name}
                           className="w-full h-full object-contain p-2"
                         />
